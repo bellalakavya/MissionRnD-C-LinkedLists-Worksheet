@@ -17,28 +17,29 @@ struct node {
 	int num;
 	struct node *next;
 };
-
 struct node * sortLinkedList(struct node *head) {
-	struct node*temp,*temp1,*temp2;
+	struct node*temp, *temp1;
+	int temp2;
 	temp = head;
-	temp1 = temp->next;
 	if (head == NULL){
 		return NULL;
 	}
 	else if (temp->next == NULL){
 		return head;
 	}
-	else{
-		while (temp != NULL&&temp1!=NULL){
-			if (temp->num > temp1->num){
-				temp2->num = temp1->num;
-				temp1->num = temp->num;
-				temp->num = temp2->num;
-			}
-			temp = head;
+	else {
+		while (temp != NULL){
 			temp1 = temp->next;
+			while (temp1 != NULL){
+				if (temp->num > temp1->num){
+					temp2 = temp1->num;
+					temp1->num = temp->num;
+					temp->num = temp2;
+				}
+				temp1 = temp1->next;
+			}
+			temp = temp->next;
 		}
 		return head;
 	}
-	return NULL;
 }
